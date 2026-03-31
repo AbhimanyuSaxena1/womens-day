@@ -31,8 +31,7 @@
 			materialLibraries: [],
 			startObject: function ( name, fromDeclaration ) {
 
-				// If the current object (initial from reset) is not from a g/o declaration in the parsed
-				// file. We need to use it for the first parsed g/o to keep things in sync.
+				
 				if ( this.object && this.object.fromDeclaration === false ) {
 
 					this.object.name = name;
@@ -63,8 +62,8 @@
 					smooth: true,
 					startMaterial: function ( name, libraries ) {
 
-						const previous = this._finalize( false ); // New usemtl declaration overwrites an inherited material, except if faces were declared
-						// after the material, then it must be preserved for proper MultiMaterial continuation.
+						const previous = this._finalize( false ); 
+						
 
 
 						if ( previous && ( previous.inherited || previous.groupCount <= 0 ) ) {
@@ -139,7 +138,7 @@
 
 							}
 
-						} // Guarantee at least one empty material, this makes the creation later more straight forward.
+						} 
 
 
 						if ( end && this.materials.length === 0 ) {

@@ -7,7 +7,7 @@
 	<meta name="title" content="3D Cube - For Crush | Aoudumber Bade">
     <meta name="github" content="https://github.com/Aoudumber-Bade">
     <link rel="shortcut icon" href="./logo.ico" type="image/x-icon" />
-  <title>Happy Womens Day - palak(made by your sir)</title>
+  
   <link rel="stylesheet" href="./css/style.css">
 
 </head>
@@ -22,7 +22,7 @@
 	  </div>
 
   <script src='./js/three.min.js'></script>
-  <!-- <script src='./js/MeshSurfaceSampler.js'></script> -->
+
   <script src='./js/TrackballControls.js'></script>
   <script src='./js/simplex-noise.js'></script>
   <script src='./js/OBJLoader.js'></script>
@@ -248,8 +248,7 @@
           materialLibraries: [],
           startObject: function (name, fromDeclaration) {
 
-            // If the current object (initial from reset) is not from a g/o declaration in the parsed
-            // file. We need to use it for the first parsed g/o to keep things in sync.
+            
             if (this.object && this.object.fromDeclaration === false) {
 
               this.object.name = name;
@@ -280,8 +279,7 @@
               smooth: true,
               startMaterial: function (name, libraries) {
 
-                const previous = this._finalize(false); // New usemtl declaration overwrites an inherited material, except if faces were declared
-                // after the material, then it must be preserved for proper MultiMaterial continuation.
+                const previous = this._finalize(false); 
 
 
                 if (previous && (previous.inherited || previous.groupCount <= 0)) {
@@ -356,8 +354,7 @@
 
                   }
 
-                } // Guarantee at least one empty material, this makes the creation later more straight forward.
-
+                } 
 
                 if (end && this.materials.length === 0) {
 
@@ -371,11 +368,7 @@
                 return lastMultiMaterial;
 
               }
-            }; // Inherit previous objects material.
-            // Spec tells us that a declared material must be set to all objects until a new material is declared.
-            // If a usemtl declaration is encountered while this new object is being parsed, it will
-            // overwrite the inherited material. Exception being that there was already face declarations
-            // to the inherited material, then it will be preserved for proper MultiMaterial continuation.
+            }; 
 
             if (previousMaterial && previousMaterial.name && typeof previousMaterial.clone === 'function') {
 
@@ -525,8 +518,7 @@
 
               this.addFaceNormal(ia, ib, ic);
 
-            } // uvs
-
+            } 
 
             if (ua !== undefined && ua !== '') {
 
@@ -539,7 +531,7 @@
 
             } else {
 
-              // add placeholder values (for inconsistent face definitions)
+              
               this.addDefaultUV();
 
             }
@@ -640,7 +632,7 @@
 
           if (text.indexOf('\r\n') !== - 1) {
 
-            // This is faster than String.split with regex that splits on both
+           
             text = text.replace(/\r\n/g, '\n');
 
           }
@@ -656,7 +648,7 @@
           let line = '',
             lineFirstChar = '';
           let lineLength = 0;
-          let result = []; // Faster to just trim left side of the line. Use if available.
+          let result = []; 
 
           const trimLeft = typeof ''.trimLeft === 'function';
 
@@ -666,7 +658,7 @@
             line = trimLeft ? line.trimLeft() : line.trim();
             lineLength = line.length;
             if (lineLength === 0) continue;
-            lineFirstChar = line.charAt(0); // @todo invoke passed in handler if any
+            lineFirstChar = line.charAt(0); 
 
             if (lineFirstChar === '#') continue;
 
@@ -706,7 +698,7 @@
 
               const lineData = line.substr(1).trim();
               const vertexData = lineData.split(/\s+/);
-              const faceVertices = []; // Parse the face vertex data into an easy to work with format
+              const faceVertices = []; 
 
               for (let j = 0, jl = vertexData.length; j < jl; j++) {
 
@@ -719,7 +711,7 @@
 
                 }
 
-              } // Draw an edge between the first vertex and all subsequent vertices to form an n-gon
+              } 
 
 
               const v1 = faceVertices[0];
@@ -784,31 +776,12 @@
 
             } else if (_map_use_pattern.test(line)) {
 
-              // the line is parsed but ignored since the loader assumes textures are defined MTL files
-              // (according to https://www.okino.com/conv/imp_wave.htm, 'usemap' is the old-style Wavefront texture reference method)
-              console.warn('THREE.OBJLoader: Rendering identifier "usemap" not supported. Textures must be defined in MTL files.');
+              
 
             } else if (lineFirstChar === 's') {
 
-              result = line.split(' '); // smooth shading
-              // @todo Handle files that have varying smooth values for a set of faces inside one geometry,
-              // but does not define a usemtl for each face set.
-              // This should be detected and a dummy material created (later MultiMaterial and geometry groups).
-              // This requires some care to not create extra material on each smooth value for "normal" obj files.
-              // where explicit usemtl defines geometry groups.
-              // Example asset: examples/models/obj/cerberus/Cerberus.obj
+              result = line.split(' '); 
 
-              /*
-               * http://paulbourke.net/dataformats/obj/
-               * or
-               * http://www.cs.utah.edu/~boulos/cs3505/obj_spec.pdf
-               *
-               * From chapter "Grouping" Syntax explanation "s group_number":
-               * "group_number is the smoothing group number. To turn off smoothing groups, use a value of 0 or off.
-               * Polygonal elements use group numbers to put elements in different smoothing groups. For free-form
-               * surfaces, smoothing groups are either turned on or off; there is no difference between values greater
-               * than 0."
-               */
 
               if (result.length > 1) {
 
@@ -937,7 +910,7 @@
 
                 createdMaterials.push(material);
 
-              } // Create mesh
+              } 
 
 
               let mesh;
@@ -990,7 +963,7 @@
 
           } else {
 
-            // if there is only the default parser state object with no geometry data, interpret data as point cloud
+          
             if (state.vertices.length > 0) {
 
               const material = new THREE.PointsMaterial({
@@ -1029,8 +1002,8 @@
    <script>
     var settings = {
       particles: {
-        length: 500, // maximum amount of particles
-        duration: 2, // particle duration in sec
+        length: 600, // maximum amount of particles
+        duration: 4, // particle duration in sec
         velocity: 100, // particle velocity in pixels/sec
         effect: -0.75, // play with this for a nice effect
         size: 30, // particle size in pixels

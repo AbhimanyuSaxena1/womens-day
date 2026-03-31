@@ -108,8 +108,7 @@
         t2 *= t2;
         n2 = t2 * t2 * (grad3[gi2] * x2 + grad3[gi2 + 1] * y2);
       }
-      // Add contributions from each corner to get the final noise value.
-      // The result is scaled to return values in the interval [-1,1].
+      
       return 70.0 * (n0 + n1 + n2);
     },
     // 3D simplex noise
@@ -185,10 +184,7 @@
           k2 = 0;
         } // Y X Z order
       }
-      // A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
-      // a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
-      // a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
-      // c = 1/6.
+     
       var x1 = x0 - i1 + G3; // Offsets for second corner in (x,y,z) coords
       var y1 = y0 - j1 + G3;
       var z1 = z0 - k1 + G3;
@@ -378,11 +374,6 @@
   }
   SimplexNoise._buildPermutationTable = buildPermutationTable;
 
-  /*
-  The ALEA PRNG and masher code used by simplex-noise.js
-  is based on code by Johannes Baagøe, modified by Jonas Wagner.
-  See alea.md for the full license.
-  */
   function alea() {
     var s0 = 0;
     var s1 = 0;
